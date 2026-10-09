@@ -128,11 +128,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $lat = $location['lat'];
         $lng = $location['lng'];
 
-        // 4. Connect to the database using .env credentials.
-        $host = $_ENV['DB_HOST'] ?? '';
-        $dbname = $_ENV['DB_NAME'] ?? '';
-        $dbuser = $_ENV['DB_USER'] ?? '';
-        $dbpass = $_ENV['DB_PASS'] ?? '';
+        // 4. Connect to the database 
+        $host = 'sql103.infinityfree.com';
+        $dbname = 'if0_43124298_student';
+        $dbuser = 'if0_43124298';
+        $dbpass = 'Uh84E2EjFR';
+
 
         if ($host === '' || $dbname === '' || $dbuser === '' || $dbpass === '') {
             throw new RuntimeException(
