@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/env_loader.php';
+
 session_start();
 $error_message = "";
 
@@ -9,10 +11,10 @@ if (isset($_GET['error']) && $_GET['error'] == 'auth') {
     $error_message = "⚠️ Please log in first to access the dashboard.";
 }
 
-$host = 'sql103.infinityfree.com';
-$dbname = 'if0_43124298_student';
-$user = 'if0_43124298';
-$pass = 'Uh84E2EjFR';
+$host = $_ENV['DB_HOST'] ?? '';
+$dbname = $_ENV['DB_NAME'] ?? '';
+$user = $_ENV['DB_USER'] ?? '';
+$pass = $_ENV['DB_PASS'] ?? '';
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

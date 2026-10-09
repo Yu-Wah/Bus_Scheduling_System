@@ -1,23 +1,8 @@
 <?php
 
+require_once __DIR__ . '/env_loader.php';
 
-
-require_once 'config.php';
-
-// Load .env file into $_ENV
-$envFile = __DIR__ . '/.env';
-if (file_exists($envFile)) {
-    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    foreach ($lines as $line) {
-        $line = trim($line);
-        if ($line === '' || $line[0] === '#')
-            continue;
-        list($key, $value) = array_map('trim', explode('=', $line, 2));
-        $_ENV[$key] = $value;
-    }
-}
-
-$Bus_Routing_API = $_ENV['Bus_Routing_API'];
+$Bus_Routing_API = $_ENV['Bus_Routing_API'] ?? '';
 session_start();
 
 
@@ -30,10 +15,10 @@ if (isset($_GET['error']) && $_GET['error'] == 'auth') {
 // ==========================================
 // PULL ALL BUS ROUTES FROM DATABASE
 // ==========================================
-$host = 'sql103.infinityfree.com';
-$dbname = 'if0_43124298_student';
-$user = 'if0_43124298';
-$pass = 'Uh84E2EjFR';
+$host = $_ENV['DB_HOST'] ?? '';
+$dbname = $_ENV['DB_NAME'] ?? '';
+$user = $_ENV['DB_USER'] ?? '';
+$pass = $_ENV['DB_PASS'] ?? '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);

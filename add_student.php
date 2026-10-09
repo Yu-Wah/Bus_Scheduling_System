@@ -5,32 +5,7 @@ ini_set('display_errors', '0');
 ini_set('log_errors', '1');
 error_reporting(E_ALL);
 
-require_once __DIR__ . '/config.php';
-
-// Load .env
-$envFile = __DIR__ . '/.env';
-
-if (is_readable($envFile)) {
-    foreach (file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
-        $line = trim($line);
-
-        if ($line === '' || str_starts_with($line, '#')) {
-            continue;
-        }
-
-        $parts = explode('=', $line, 2);
-
-        if (count($parts) === 2) {
-            $key = trim($parts[0]);
-            $value = trim($parts[1]);
-
-            // Remove optional surrounding quotes.
-            $value = trim($value, "\"'");
-
-            $_ENV[$key] = $value;
-        }
-    }
-}
+require_once __DIR__ . '/env_loader.php';
 
 session_start();
 
@@ -129,10 +104,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $lng = $location['lng'];
 
         // 4. Connect to the database 
-        $host = 'sql103.infinityfree.com';
-        $dbname = 'if0_43124298_student';
-        $dbuser = 'if0_43124298';
-        $dbpass = 'Uh84E2EjFR';
+        $host = $_ENV['DB_HOST'] ?? '';
+        $dbname = $_ENV['DB_NAME'] ?? '';
+        $dbuser = $_ENV['DB_USER'] ?? '';
+        $dbpass = $_ENV['DB_PASS'] ?? '';
 
 
         if ($host === '' || $dbname === '' || $dbuser === '' || $dbpass === '') {

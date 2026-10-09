@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/env_loader.php';
+
 session_start();
 $error_message = "";
 
@@ -276,10 +278,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['run_engine'])) {
         // Only run the database connection and engine IF the form was submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['run_engine'])) {
 
-            $host = 'sql103.infinityfree.com';
-            $dbname = 'if0_43124298_student';
-            $user = 'if0_43124298';
-            $pass = 'Uh84E2EjFR';
+            $host = $_ENV['DB_HOST'] ?? '';
+            $dbname = $_ENV['DB_NAME'] ?? '';
+            $user = $_ENV['DB_USER'] ?? '';
+            $pass = $_ENV['DB_PASS'] ?? '';
             $school = ['id' => 'School', 'lat' => 18.797071, 'lng' => 99.032938];
             $bus_capacity = 5;
 
