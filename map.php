@@ -30,10 +30,10 @@ if (isset($_GET['error']) && $_GET['error'] == 'auth') {
 // ==========================================
 // PULL ALL BUS ROUTES FROM DATABASE
 // ==========================================
-$host = 'localhost';
-$dbname = 'student';
-$user = 'root';
-$pass = '';
+$host = 'sql103.infinityfree.com';
+$dbname = 'if0_43124298_student';
+$user = 'if0_43124298';
+$pass = 'Uh84E2EjFR';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);

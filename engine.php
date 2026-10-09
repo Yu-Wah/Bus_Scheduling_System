@@ -229,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['run_engine'])) {
             max-width: 600px;
         }
 
-        /* --- Add this to your existing <style> block --- */
+
         .btn-dashboard {
             position: absolute;
             top: 20px;
@@ -276,10 +276,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['run_engine'])) {
         // Only run the database connection and engine IF the form was submitted
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['run_engine'])) {
 
-            $host = 'localhost';
-            $dbname = 'student';
-            $user = 'root';
-            $pass = '';
+            $host = 'sql103.infinityfree.com';
+            $dbname = 'if0_43124298_student';
+            $user = 'if0_43124298';
+            $pass = 'Uh84E2EjFR';
             $school = ['id' => 'School', 'lat' => 18.797071, 'lng' => 99.032938];
             $bus_capacity = 5;
 
@@ -346,7 +346,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['run_engine'])) {
 
     <body>
 
-        <!-- ADD THIS NEW BUTTON HERE -->
         <a href="index.php" class="btn-dashboard">⬅ Dashboard</a>
 
 
